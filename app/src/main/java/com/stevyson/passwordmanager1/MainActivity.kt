@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.stevyson.passwordmanager1.presentation.generator.GeneratorScreen
+import com.stevyson.passwordmanager1.presentation.password.PasswordScreen
 import com.stevyson.passwordmanager1.ui.theme.PasswordManager1Theme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    GeneratorScreen()
+                    PasswordScreen()
                 }
             }
         }

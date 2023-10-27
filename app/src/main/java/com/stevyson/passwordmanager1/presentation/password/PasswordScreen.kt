@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.KeyboardArrowLeft
+import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -31,7 +31,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.stevyson.passwordmanager1.R
-import com.stevyson.passwordmanager1.presentation.generator.GeneratorScreen
 import com.stevyson.passwordmanager1.presentation.password.components.AddButton
 import com.stevyson.passwordmanager1.presentation.password.components.PasswordListItem
 import com.stevyson.passwordmanager1.presentation.password.components.SearchBox
@@ -64,7 +63,7 @@ fun PasswordScreen() {
                     ) {
                         Row(modifier = Modifier.padding(vertical = 10.dp)) {
                             Icon(
-                                Icons.Rounded.KeyboardArrowLeft,
+                                Icons.Rounded.ArrowBack,
                                 contentDescription = "Settings",
                                 tint = MainTextColor
                             )
@@ -88,7 +87,7 @@ fun PasswordScreen() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
-                    SearchBox()
+                    SearchBox(modifier = Modifier)
                     AddButton {}
                 }
                 Spacer(modifier = Modifier.height(10.dp))

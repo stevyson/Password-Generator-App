@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.KeyboardArrowLeft
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -63,7 +64,7 @@ fun GeneratorScreen(){
                     ) {
                         Row(modifier = Modifier.padding(vertical = 10.dp)) {
                             Icon(
-                                Icons.Rounded.KeyboardArrowLeft,
+                                Icons.Rounded.ArrowBack,
                                 contentDescription = "Settings",
                                 tint = MainTextColor
                             )

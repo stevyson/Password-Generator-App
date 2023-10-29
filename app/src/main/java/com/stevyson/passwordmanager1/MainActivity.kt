@@ -11,9 +11,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.stevyson.passwordmanager1.presentation.generator.GeneratorScreen
+import com.stevyson.passwordmanager1.presentation.password.Add
+import com.stevyson.passwordmanager1.presentation.password.AddViewModel
 import com.stevyson.passwordmanager1.presentation.password.PasswordScreen
 import com.stevyson.passwordmanager1.ui.theme.PasswordManager1Theme
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    PasswordScreen()
+                    Add()
                 }
             }
         }

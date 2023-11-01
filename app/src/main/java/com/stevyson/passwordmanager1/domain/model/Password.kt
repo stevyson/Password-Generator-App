@@ -10,6 +10,7 @@ data class Password(
     val siteEmail: String,
     val password: String,
     val lastUpdatedAt: Long,
+    val category: String,
     @PrimaryKey
     val id: Int? = null
 )

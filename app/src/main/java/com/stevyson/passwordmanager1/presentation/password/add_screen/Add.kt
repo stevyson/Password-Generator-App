@@ -1,4 +1,4 @@
-package com.stevyson.passwordmanager1.presentation.password
+package com.stevyson.passwordmanager1.presentation.password.add_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,6 +10,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.DrawerState
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -19,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -32,9 +35,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.stevyson.passwordmanager1.Screen
 import com.stevyson.passwordmanager1.domain.model.Category
 import com.stevyson.passwordmanager1.presentation.password.components.TableRow
 import com.stevyson.passwordmanager1.presentation.password.components.UnStyledTextField
@@ -42,7 +47,6 @@ import com.stevyson.passwordmanager1.ui.theme.Background
 import com.stevyson.passwordmanager1.ui.theme.BackgroundElevated
 import com.stevyson.passwordmanager1.ui.theme.IconColor
 import com.stevyson.passwordmanager1.ui.theme.MainTextColor
-import com.stevyson.passwordmanager1.ui.theme.PasswordManager1Theme
 import com.stevyson.passwordmanager1.ui.theme.SearchBarBorderColor
 import com.stevyson.passwordmanager1.ui.theme.Shapes
 import com.stevyson.passwordmanager1.ui.theme.TextPrimary
@@ -50,7 +54,9 @@ import com.stevyson.passwordmanager1.ui.theme.TextPrimary
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun Add( vm: AddViewModel = hiltViewModel()) {
+fun Add(vm: AddViewModel = hiltViewModel(),
+        navController: NavController ,
+        drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed)) {
     val state by vm.uiState.collectAsState()
 
     val category = listOf(
@@ -63,7 +69,7 @@ fun Add( vm: AddViewModel = hiltViewModel()) {
 
     Scaffold(topBar = {
         TopAppBar(
-            title = { Text("Add", color = MainTextColor) },
+            title = { Text("Add Password", color = MainTextColor) },
             colors = TopAppBarDefaults.mediumTopAppBarColors(
                 containerColor = Background
             )
@@ -176,7 +182,10 @@ fun Add( vm: AddViewModel = hiltViewModel()) {
 
             }
             Button(
-                onClick = vm::savePassword,
+                onClick = {
+                    vm.savePassword()
+                    navController.popBackStack()
+                },
                 modifier = Modifier.padding(16.dp),
                 shape = Shapes.large,
                 colors = ButtonDefaults.buttonColors(
@@ -189,11 +198,11 @@ fun Add( vm: AddViewModel = hiltViewModel()) {
         }
     })
 }
-
-@Preview
-@Composable
-fun PreviewAdd() {
-    PasswordManager1Theme {
-        Add()
-    }
-}
+//
+//@Preview
+//@Composable
+//fun PreviewAdd() {
+//    PasswordManager1Theme {
+//        Add()
+//    }
+//}

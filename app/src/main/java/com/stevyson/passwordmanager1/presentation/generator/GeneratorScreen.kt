@@ -1,6 +1,5 @@
 package com.stevyson.passwordmanager1.presentation.generator
 
-import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,39 +13,42 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
-import androidx.compose.material.icons.rounded.KeyboardArrowLeft
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DrawerState
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.stevyson.passwordmanager1.Screen
 import com.stevyson.passwordmanager1.presentation.generator.components.DisplayCard
 import com.stevyson.passwordmanager1.presentation.generator.components.LengthSlider
 import com.stevyson.passwordmanager1.presentation.generator.components.OptionRow
 import com.stevyson.passwordmanager1.ui.theme.Background
 import com.stevyson.passwordmanager1.ui.theme.IconColor
 import com.stevyson.passwordmanager1.ui.theme.MainTextColor
-import com.stevyson.passwordmanager1.ui.theme.PasswordManager1Theme
-import com.stevyson.passwordmanager1.ui.theme.Shapes
-import com.stevyson.passwordmanager1.ui.theme.Typography
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GeneratorScreen(){
+fun GeneratorScreen(
+    drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
+    navController: NavController
+){
 
     Scaffold(
         topBar = {
@@ -59,7 +61,9 @@ fun GeneratorScreen(){
                 ),
                 navigationIcon = {
                     Surface(
-                        onClick = {  },
+                        onClick = {
+                            navController.popBackStack()
+                        },
                         color = Color.Transparent,
                     ) {
                         Row(modifier = Modifier.padding(vertical = 10.dp)) {
@@ -118,7 +122,7 @@ fun GeneratorScreen(){
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Button(modifier = Modifier.size(width = 330.dp, height = 70.dp),
-                    onClick = { /*TODO*/ },
+                    onClick = { /*save password and navigate to password screen*/ },
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MainTextColor
@@ -134,11 +138,11 @@ fun GeneratorScreen(){
 
 }
 
-
-@Preview
-@Composable
-fun PreviewGenerator() {
-    PasswordManager1Theme {
-        GeneratorScreen()
-    }
-}
+//
+//@Preview
+//@Composable
+//fun PreviewGenerator() {
+//    PasswordManager1Theme {
+//        GeneratorScreen()
+//    }
+//}

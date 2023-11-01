@@ -1,4 +1,4 @@
-package com.stevyson.passwordmanager1.presentation.password
+package com.stevyson.passwordmanager1.presentation.password.add_screen
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.stevyson.passwordmanager1.domain.model.Category
 import com.stevyson.passwordmanager1.domain.model.InvalidPasswordException
 import com.stevyson.passwordmanager1.domain.model.Password
+import com.stevyson.passwordmanager1.domain.model.toCategory
 import com.stevyson.passwordmanager1.domain.repository.PasswordRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -46,12 +47,22 @@ class AddViewModel @Inject constructor(
         viewModelScope.launch {
           repository.getPasswordById(passwordId)?.also { password ->
             currentPasswordId = password.id
-            _uiState.value.siteName = uiState.value.siteName
-            _uiState.value.email = uiState.value.email
-            _uiState.value.password = uiState.value.password
-            _uiState.value.category = uiState.value.category
+            _uiState.value = uiState.value.copy(
+              siteName = password.siteName,
+              email =  password.siteEmail,
+              password = password.password,
+              category = password.category.toCategory()
+            )
+
           }
         }
+      }else {
+        _uiState.value.copy(
+          siteName = uiState.value.siteName,
+          email =  uiState.value.email,
+          password = uiState.value.password,
+          category = uiState.value.category
+        )
       }
     }
   }
@@ -99,6 +110,7 @@ class AddViewModel @Inject constructor(
             siteEmail = _uiState.value.email,
             password = _uiState.value.password,
             lastUpdatedAt = System.currentTimeMillis(),
+            category = _uiState.value.category.name,
             id = currentPasswordId
           )
         )

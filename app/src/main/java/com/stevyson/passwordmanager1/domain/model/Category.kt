@@ -7,3 +7,12 @@ sealed class Category(val name: String) {
     object Apps : Category("Apps")
 }
 
+fun String.toCategory(): Category {
+    return when(this) {
+        "Social" -> Category.Social
+        "Streaming" -> Category.Streaming
+        "Wallet" -> Category.Wallet
+        "Apps" -> Category.Apps
+        else -> Category.Social
+    }
+}

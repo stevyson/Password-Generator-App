@@ -22,4 +22,5 @@ interface PasswordDao {
     @Delete
     suspend fun deletePassword(password: Password)
 
+
 }

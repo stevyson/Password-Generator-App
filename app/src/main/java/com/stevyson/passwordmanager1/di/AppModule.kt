@@ -22,7 +22,9 @@ object AppModule {
             app,
             PasswordDatabase::class.java,
             PasswordDatabase.DATABASE_NAME
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides

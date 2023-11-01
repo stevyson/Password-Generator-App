@@ -7,7 +7,7 @@ import com.stevyson.passwordmanager1.domain.model.Password
 
 @Database(
     entities = [Password::class],
-    version = 1
+    version = 2
 )
 abstract class PasswordDatabase: RoomDatabase() {
     abstract val passwordDao: PasswordDao

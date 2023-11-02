@@ -335,7 +335,7 @@ fun HomeScreen(
                             )
                         }
 
-                        MyAccountsTab()
+                        MyAccountsTab(navController)
 
 
                         Column(

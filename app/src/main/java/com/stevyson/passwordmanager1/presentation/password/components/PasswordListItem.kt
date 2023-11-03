@@ -85,8 +85,6 @@ fun PasswordListItem(
                onClick = {moreMenuOpened = true},
                modifier = Modifier
                    .align(Alignment.Top)
-
-               ,
            )
            {
                Icon(imageVector = Icons.Rounded.MoreVert,

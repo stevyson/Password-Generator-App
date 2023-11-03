@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
+import androidx.compose.material3.SliderPositions
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -18,21 +19,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.stevyson.passwordmanager1.ui.theme.IconColor
 import com.stevyson.passwordmanager1.ui.theme.MainTextColor
-import com.stevyson.passwordmanager1.ui.theme.PasswordManager1Theme
 import com.stevyson.passwordmanager1.ui.theme.TextPrimary
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LengthSlider(){
-    
+fun LengthSlider(
+   sliderPositions: SliderPositions
+){
+    var sliderPosition by remember { mutableStateOf(20f) }
     Column() {
-        var sliderPosition by remember { mutableStateOf(20f) }
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -87,11 +88,11 @@ fun LengthSlider(){
 }
 
 
-
-@Preview
-@Composable
-fun PreviewSlider() {
-    PasswordManager1Theme {
-        LengthSlider()
-    }
-}
+//
+//@Preview
+//@Composable
+//fun PreviewSlider() {
+//    PasswordManager1Theme {
+//        LengthSlider()
+//    }
+//}
